@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05070a">
+  <meta name="description" content="OUH SIGNAL — layanan pengajuan bantuan signal Android & iOS.">
+  <title>OUH SIGNAL — Android • iOS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="scanlines"></div>
+  <header class="topbar">
+    <a class="brand" href="#home"><span class="dot"></span> OUH<span>SIGNAL</span></a>
+    <nav>
+      <a href="#paket">Paket</a>
+      <a href="#order">Order</a>
+      <a href="#payment">Payment</a>
+      <a href="#info">Info</a>
+    </nav>
+    <a class="nav-wa" id="navWa" href="#" target="_blank">WhatsApp ↗</a>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">[ SIGNAL SERVICE // ONLINE ]</p>
+        <h1>NO SIGNAL?<br><span>LET'S CHECK IT.</span></h1>
+        <p class="hero-text">
+          Layanan pengajuan bantuan signal untuk perangkat Android & iOS.
+          Pilih paket, isi data perangkat, upload identitas IMEI dan bukti pembayaran,
+          lalu kirim detail order ke WhatsApp bisnis.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#order">MULAI ORDER</a>
+          <a class="btn ghost" href="#paket">LIHAT PAKET</a>
+        </div>
+        <div class="terminal">
+          <div><span>root@ouh-signal</span>:~$ service.status</div>
+          <div class="ok">● ONLINE — ORDER VIA WHATSAPP</div>
+          <div><span>root@ouh-signal</span>:~$ supported_devices</div>
+          <div class="muted">Android / iPhone / eSIM-IMEI capable devices*</div>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <div class="radar">
+          <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
+          <div class="cross"></div><div class="sweep"></div>
+          <div class="radar-center">OS</div>
+        </div>
+        <div class="status-row"><span>NETWORK</span><b>CHECKING</b></div>
+        <div class="status-row"><span>ANDROID</span><b class="green">READY</b></div>
+        <div class="status-row"><span>iOS</span><b class="green">READY</b></div>
+      </div>
+    </section>
+
+    <section id="paket" class="section">
+      <div class="section-head">
+        <p class="eyebrow">01 // SERVICE PACKAGES</p>
+        <h2>PILIH PAKET</h2>
+        <p>Harga dan estimasi proses ditampilkan sesuai paket yang tersedia.</p>
+      </div>
+      <div class="plans" id="plans"></div>
+    </section>
+
+    <section id="order" class="section order-section">
+      <div class="section-head">
+        <p class="eyebrow">02 // DEVICE DATA</p>
+        <h2>BUAT ORDER</h2>
+        <p>Isi data sesuai perangkat. Pastikan IMEI yang dimasukkan sama dengan identitas IMEI dari perangkat.</p>
+      </div>
+
+      <form id="orderForm" class="form-card">
+        <div class="selected-plan" id="selectedPlan">Belum memilih paket</div>
+
+        <div class="grid2">
+          <label>Nama
+            <input required name="customerName" placeholder="Nama lengkap">
+          </label>
+          <label>No. WhatsApp
+            <input required name="customerPhone" inputmode="tel" placeholder="08xxxxxxxxxx">
+          </label>
+          <label>Device / Type HP
+            <input required name="device" placeholder="Contoh: iPhone 13 / Samsung S23">
+          </label>
+          <label>IMEI 1
+            <input required name="imei1" inputmode="numeric" maxlength="15" placeholder="15 digit IMEI">
+          </label>
+        </div>
+
+        <label class="full">Catatan / Kendala Signal
+          <textarea name="issue" rows="4" placeholder="Contoh: signal hilang setelah reset / hanya emergency calls / dll."></textarea>
+        </label>
+
+        <div class="upload-grid">
+          <label class="upload">
+            <span class="upload-title">UPLOAD IDENTITAS IMEI</span>
+            <small>Wajib foto/screenshot layar *#06# yang menampilkan IMEI perangkat.</small>
+            <input required type="file" name="imeiProof" accept="image/*">
+          </label>
+          <label class="upload">
+            <span class="upload-title">BUKTI PAYMENT</span>
+            <small>Upload screenshot bukti transfer/QRIS setelah pembayaran.</small>
+            <input required type="file" name="paymentProof" accept="image/*">
+          </label>
+        </div>
+
+        <label class="check"><input required type="checkbox"> Saya memastikan data perangkat dan IMEI yang saya kirim adalah milik/perangkat yang saya berhak urus.</label>
+
+        <button class="btn primary big" type="submit">KIRIM DETAIL ORDER KE WHATSAPP ↗</button>
+        <p class="form-note">Catatan teknis: WhatsApp Web/WhatsApp link tidak dapat otomatis melampirkan file dari browser. Setelah tombol ditekan, WhatsApp akan terbuka dengan detail order; lampirkan 2 file upload secara manual di chat yang sama.</p>
+        <div id="formMsg" class="form-msg"></div>
+      </form>
+    </section>
+
+    <section id="payment" class="section payment-section">
+      <div class="section-head">
+        <p class="eyebrow">03 // PAYMENT</p>
+        <h2>PAYMENT VIA QRIS</h2>
+        <p>Scan QRIS di bawah, selesaikan pembayaran sesuai paket, lalu upload screenshot bukti payment pada form order.</p>
+      </div>
+      <div class="payment-card">
+        <div class="qris-wrap">
+          <img src="assets/qris-payment.jpg" alt="QRIS pembayaran OUH SIGNAL">
+        </div>
+        <div class="payment-copy">
+          <span class="tag">QRIS PAYMENT</span>
+          <h3>SCAN. PAY. SEND PROOF.</h3>
+          <p>Jika QRIS bermasalah atau pembayaran mengalami kendala, hubungi WhatsApp bisnis.</p>
+          <a class="btn ghost" id="paymentWa" href="#" target="_blank">CHAT ADMIN</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section proof-section">
+      <div class="section-head">
+        <p class="eyebrow">04 // REQUIRED PROOF</p>
+        <h2>CONTOH IDENTITAS IMEI</h2>
+        <p>Buka dialer perangkat lalu ketik <strong>*#06#</strong>. Foto/screenshot layar yang menampilkan IMEI kemudian upload pada form.</p>
+      </div>
+      <div class="example-card">
+        <img src="assets/imei-example.jpg" alt="Contoh layar identitas IMEI">
+        <div>
+          <span class="tag">WAJIB</span>
+          <h3>PASTIKAN IMEI TERBACA</h3>
+          <p>Jangan crop angka IMEI. Pastikan foto jelas dan menunjukkan perangkat/layar identitas IMEI.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="info" class="section about">
+      <div>
+        <p class="eyebrow">05 // ABOUT OUH SIGNAL</p>
+        <h2>FAST RESPONSE.<br>CLEAR PROCESS.</h2>
+      </div>
+      <div class="about-copy">
+        <p><strong>OUH SIGNAL</strong> adalah layanan pengajuan bantuan signal untuk perangkat Android & iOS. Kami menerima data perangkat, memeriksa detail order, lalu memproses sesuai paket yang dipilih dan antrean layanan.</p>
+        <div class="contact-box">
+          <div><span>WHATSAPP</span><a id="aboutWa" href="#" target="_blank">0858-1447-1025</a></div>
+          <div><span>INSTAGRAM</span><a href="https://instagram.com/Ouh.service" target="_blank">@Ouh.service</a></div>
+        </div>
+        <p class="small">Estimasi adalah perkiraan waktu proses, bukan jaminan. Kelayakan dan hasil layanan dapat bergantung pada model perangkat, status jaringan/operator, serta kondisi perangkat.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>OUH<span>SIGNAL</span> // ANDROID • iOS</div>
+    <div>© <span id="year"></span> OUH SERVICE</div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
